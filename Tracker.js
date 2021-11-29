@@ -224,6 +224,8 @@ function checkFlags() {
   flags['area/gerudo']['location/gerudo.c_rooftop'] = (byte & BIT1) ? true : false;
   byte = mem.u8[BASE + 0xB0EF];
   flags['area/desert']['location/desert.c_chest'] = (byte & BIT1) ? true : false;
+  byte = mem.u8[BASE + 0xB0FB];
+  flags['area/desert']['location/desert.c_bombchu_wasteland'] = (byte & BIT2) ? true : false;
   byte = mem.u8[BASE + 0xB127];
   flags['area/mountain']['location/mountain.c_outside_goron_chest'] = (byte & BIT2) ? true : false;
   byte = mem.u8[BASE + 0xB130];
@@ -240,6 +242,8 @@ function checkFlags() {
   flags['area/goron']['location/goron.c_maze_center'] = (byte & BIT3) ? true : false;
   byte = mem.u8[BASE + 0xB168];
   flags['area/goron']['location/goron.c_spinning_pot_hp'] = (byte & BIT8) ? true : false;
+  byte = mem.u8[BASE + 0xB16B];
+  flags['area/goron']['location/goron.c_medigoron'] = (byte & BIT2) ? true : false;
   byte = mem.u8[BASE + 0xB474];
   flags['area/lonlon']['location/lonlon.s_wall_child_night'] = (byte & BIT1) ? true : false;
   flags['area/lonlon']['location/lonlon.s_paddock_fence_child_night'] = (byte & BIT2) ? true : false;

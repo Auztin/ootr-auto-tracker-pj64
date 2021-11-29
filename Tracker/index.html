@@ -1,0 +1,121 @@
+<title>Austin's Auto Tracker for OoT</title>
+<style>
+  html, body {
+    margin: 0px;
+  }
+</style>
+<script type="text/javascript">
+  var ws;
+  var loaded = false;
+  function initConnection() {
+    if (ws && ws.readyState < 3) return;
+    ws = new WebSocket('ws://'+location.host+'/tracker');
+    ws.addEventListener('open', function (event) {
+      if (loaded) ws.send('0');
+    });
+    ws.addEventListener('message', function (event) {
+      var args = event.data.split(' ');
+      if (args[0] == '0') {
+        var iframe;
+        var itemgrid;
+        var item;
+        if (
+             (iframe = document.querySelector('iframe'))
+          && (itemgrid = iframe.contentDocument.querySelector('ootrt-itemgrid'))
+        ) {
+          if (item = itemgrid.shadowRoot.querySelector('[ref="'+args[1]+'"]')) {
+            item.getState().value = parseInt(args[2]);
+          }
+        }
+      }
+      if (args[0] == '1') {
+        var iframe;
+        var locationlist;
+        var location;
+        if (
+             (iframe = document.querySelector('iframe'))
+          && (locationlist = iframe.contentDocument.querySelector('ootrt-locationlist'))
+        ) {
+          locationlist.ref = args[1];
+          if (location = locationlist.shadowRoot.querySelector('[ref="'+args[2]+'"]')) {
+            if (args[3] == 'true') location.getState().value = 1;
+            else if (location.getState().item != 'item.refill_item') location.getState().value = 0;
+          }
+        }
+      }
+      if (args[0] == '2') {
+        var iframe;
+        var dungeons;
+        var item;
+        if (
+             (iframe = document.querySelector('iframe'))
+          && (dungeons = iframe.contentDocument.querySelector('ootrt-dungeonstate'))
+        ) {
+          if (item = dungeons.shadowRoot.querySelector('[ref="'+args[1]+'"]')) {
+            item.getState().value = parseInt(args[2]);
+          }
+        }
+      }
+      if (args[0] == '3') {
+        var iframe;
+        var shops;
+        var shop;
+        var slot;
+        if (
+             (iframe = document.querySelector('iframe'))
+          && (shops = iframe.contentDocument.querySelector('ootrt-shoplist'))
+        ) {
+          if (shop = shops.shadowRoot.querySelector('[ref="'+args[1].split('/')[0]+'"]')) {
+            if (slot = shop.shadowRoot.querySelector('#slot'+args[1].split('/')[1])) {
+              var oldBought = slot.getState().bought;
+              slot.getState().item = args[2];
+              slot.getState().price = parseInt(args[3]);
+              var bought = (args[4] == 'true') ? true : false;
+              if (slot.getState().name != 'junk') {
+                slot.getState().bought = bought;
+                slot.getState().name = args.slice(5).join(' ');
+              }
+              else {
+                if (bought || oldBought) slot.getState().bought = true;
+              }
+            }
+          }
+        }
+      }
+      if (args[0] == '4') {
+        console.log(args);
+        var iframe;
+        var dungeons;
+        var item;
+        if (
+             (iframe = document.querySelector('iframe'))
+          && (dungeons = iframe.contentDocument.querySelector('ootrt-dungeonstate'))
+        ) {
+          if (item = dungeons.shadowRoot.querySelector('[ref="'+args[1]+'"][type="type"]')) {
+            item.getState().type = args[2];
+          }
+        }
+      }
+    });
+  }
+  initConnection();
+  setInterval(initConnection, 5000);
+  function checkTracker() {
+    var l = document.querySelector('iframe').contentDocument.querySelector('#splash.inactive');
+    if (l == null) {
+      loaded = false;
+    }
+    else {
+      if (!loaded) {
+        loaded = true;
+        // var dungeons = document.querySelector('iframe').contentDocument.querySelector('ootrt-dungeonstate').shadowRoot.querySelectorAll('ootrt-dungeontype');
+        // for (var i = 0; i < dungeons.length; i++) {
+        //   dungeons[i].getState().type = 'v';
+        // }
+        if (ws && ws.readyState == 1) ws.send('0');
+      }
+    }
+  }
+  setInterval(checkTracker, 5000);
+</script>
+<iframe src="/index.html" style="border:0px;width:100vw;height:100vh"></iframe>

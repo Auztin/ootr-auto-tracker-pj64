@@ -1961,7 +1961,7 @@ console.listen(function(input) {
     return;
   }
   console.log('Starting webserver on port '+port+'...');
-  console.log('Connect using http://localhost:'+port+'/');
+  console.log('Connect using http://127.0.0.1:'+port+'/');
   var httpd = require('httpd.js').listen(port, pj64.scriptsDirectory+'modules/Tracker/track-oot/', pj64.scriptsDirectory+'modules/Tracker/index.html', function(ws) {
     if (ws.uri) {
       clients.push(ws);

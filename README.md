@@ -58,10 +58,10 @@ Weregoose found addresses for:
 
 ### Running the script
 1. In Project64, go to Debugger->Scripts...
-2. Select Multiworld.js
+2. Select Tracker.js
 3. Click Run
 4. Type in a port to use. 8080 should be fine for most people. If you wish to use this from another computer in your network, make sure to allow it in your firewall.
-5. Open your prefered web browser (Firefox and Chrome were tested) and go to the address that the script gave you. For example, if you chose 8080 for the port, then you would navigate to http://localhost:8080/
+5. Open your prefered web browser (Firefox and Chrome were tested) and go to the address that the script gave you. For example, if you chose 8080 for the port, then you would navigate to http://127.0.0.1:8080/
    - If you wish to use the tracker from another computer in your LAN, replace localhost with the LAN IP of the computer
 6. Configure the tracker based on the randomizer settings you chose and personal preference
 7. Launch the game

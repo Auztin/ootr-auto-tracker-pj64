@@ -12,9 +12,10 @@ This was developed using v6.2 of the OoT Randomizer. Version changes might break
 - All stones/medallions
 - Small keys and Boss keys
 - Maps and Compasses
-- Whether a dungeon is Vanilla or Master Quest
+- Whether a dungeon is Vanilla or Master Quest upon visiting it
 - Shops (The item being sold, the price, who it's for and whether you've bought it)
 - ALL "checks" (anything that gives you a randomized item)
+- Randomized Entrances (dugeons/interiors/grottos/overworld/owl/song warps/spawn)
 
 Basically, the only things it doesn't track are:
 - Triforce Pieces Count
@@ -22,7 +23,6 @@ Basically, the only things it doesn't track are:
 - Refill Item Count
 - Randomized Ocarina Notes
 - Gossip Stones
-- Randomized Entrances
 
 # Support
 Finding all of the addresses for the flags that control whether or not you've done a check took a MASSIVE amount of time.
@@ -62,7 +62,8 @@ Weregoose found addresses for:
 3. Click Run
 4. Type in a port to use. 8080 should be fine for most people. If you wish to use this from another computer in your network, make sure to allow it in your firewall.
 5. Open your prefered web browser (Firefox and Chrome were tested) and go to the address that the script gave you. For example, if you chose 8080 for the port, then you would navigate to http://127.0.0.1:8080/
-   - If you wish to use the tracker from another computer in your LAN, replace localhost with the LAN IP of the computer
+   - Using 127.0.0.1 instead of localhost will perform better.
+   - If you wish to use the tracker from another computer in your LAN, replace 127.0.0.1 with the LAN IP of the computer
 6. Configure the tracker based on the randomizer settings you chose and personal preference
 7. Launch the game
 

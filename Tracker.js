@@ -2439,7 +2439,7 @@ function checkLocations() {
   else if (scene == 0x0008) tmpLocation = 'area/well';
   else if (scene == 0x0009) tmpLocation = 'area/ice_cavern';
   else if (scene == 0x000B) tmpLocation = 'area/training_grounds';
-  else if (scene == 0x0064) tmpLocation = 'area/castle_ganon';
+  else if (scene == 0x000D) tmpLocation = 'area/castle_ganon';
   if (tmpLocation && location != tmpLocation) {
     location = tmpLocation;
     if (prevDungeonTypes[location] && !prevDungeonTypes[location].visited) {

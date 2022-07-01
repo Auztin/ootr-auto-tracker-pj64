@@ -2605,7 +2605,7 @@ function checkLocations() {
       'subexit/castle_town.guard_tower',
     ];
   }
-  else if (scene == 0x0020 || scene == 0x0021 || scene == 0x22) {
+  else if (scene == 0x0020 || scene == 0x0021) {
     sceneName = 'area/castle_town';
     sceneExits = [
       'exit/market.marketentrance_market_gateway',
@@ -2619,6 +2619,16 @@ function checkLocations() {
       'subexit/castle_town.minigame_shooting',
       'subexit/castle_town.shop_mask',
       'subexit/castle_town.minigame_treasure',
+    ];
+  }
+  else if (scene == 0x22) {
+    sceneName = 'area/castle_town';
+    sceneExits = [
+      'exit/market.marketentrance_market_gateway',
+      'exit/market.grounds_market_gateway',
+      'exit/market.tot_market_gateway',
+      null,
+      null,
     ];
   }
   else if (scene == 0x001E) {

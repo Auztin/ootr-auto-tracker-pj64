@@ -484,533 +484,510 @@ function checkFlags() {
   byte = mem.u8[BASE + 0xA950];
   flags['area/temple_shadow']['location/temple_shadow.c_bongobongo'] = (byte & BIT8) ? true : false;
   flags['area/temple_shadow']['location/temple_shadow_mq.c_bongobongo'] = (byte & BIT8) ? true : false;
-  if (prevDungeonTypes['area/deku'] && prevDungeonTypes['area/deku'].type == 'v') {
+  var dungeonType;
+  dungeonType = prevDungeonTypes['area/deku'] && prevDungeonTypes['area/deku'].type == 'v';
     byte = mem.u8[BASE + 0xA6A7];
-    flags['area/deku']['location/deku.c_slingshot'] = (byte & BIT2) ? true : false;
-    flags['area/deku']['location/deku.c_compass'] = (byte & BIT3) ? true : false;
-    flags['area/deku']['location/deku.c_lobby'] = (byte & BIT4) ? true : false;
-    flags['area/deku']['location/deku.c_basement'] = (byte & BIT5) ? true : false;
-    flags['area/deku']['location/deku.c_slingshot_side'] = (byte & BIT6) ? true : false;
-    flags['area/deku']['location/deku.c_compass_side'] = (byte & BIT7) ? true : false;
+    flags['area/deku']['location/deku.c_slingshot'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.c_compass'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.c_lobby'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.c_basement'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.c_slingshot_side'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.c_compass_side'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46F];
-    flags['area/deku']['location/deku.s_bombable_behind_web_child'] = (byte & BIT1) ? true : false;
-    flags['area/deku']['location/deku.s_basement_metal_gate_child'] = (byte & BIT2) ? true : false;
-    flags['area/deku']['location/deku.s_basement_vines_child'] = (byte & BIT3) ? true : false;
-    flags['area/deku']['location/deku.s_3f_compass_side_child'] = (byte & BIT4) ? true : false;
-  }
-  else if (prevDungeonTypes['area/deku'] && prevDungeonTypes['area/deku'].type == 'mq') {
+    flags['area/deku']['location/deku.s_bombable_behind_web_child'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.s_basement_metal_gate_child'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.s_basement_vines_child'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku.s_3f_compass_side_child'] = ((byte & BIT4) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/deku'] && prevDungeonTypes['area/deku'].type == 'mq';
     byte = mem.u8[BASE + 0xA6A7];
-    flags['area/deku']['location/deku_mq.c_after_log'] = (byte & BIT1) ? true : false;
-    flags['area/deku']['location/deku_mq.c_compass'] = (byte & BIT2) ? true : false;
-    flags['area/deku']['location/deku_mq.c_slingshot_back'] = (byte & BIT3) ? true : false;
-    flags['area/deku']['location/deku_mq.c_lobby'] = (byte & BIT4) ? true : false;
-    flags['area/deku']['location/deku_mq.c_basement'] = (byte & BIT5) ? true : false;
-    flags['area/deku']['location/deku_mq.c_before_log'] = (byte & BIT6) ? true : false;
-    flags['area/deku']['location/deku_mq.c_slingshot'] = (byte & BIT7) ? true : false;
+    flags['area/deku']['location/deku_mq.c_after_log'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.c_compass'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.c_slingshot_back'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.c_lobby'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.c_basement'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.c_before_log'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.c_slingshot'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6A7];
-    flags['area/deku']['location/deku_mq.c_basement_salesman'] = (byte & BIT6) ? true : false;
+    flags['area/deku']['location/deku_mq.c_basement_salesman'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46F];
-    flags['area/deku']['location/deku_mq.s_basement_back_room_child'] = (byte & BIT1) ? true : false;
-    flags['area/deku']['location/deku_mq.s_crate_near_map_child'] = (byte & BIT2) ? true : false;
-    flags['area/deku']['location/deku_mq.s_basement_grave_ceiling_child'] = (byte & BIT3) ? true : false;
-    flags['area/deku']['location/deku_mq.s_2f_compass_side_child'] = (byte & BIT4) ? true : false;
-  }
-  if (prevDungeonTypes['area/dodongo'] && prevDungeonTypes['area/dodongo'].type == 'v') {
+    flags['area/deku']['location/deku_mq.s_basement_back_room_child'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.s_crate_near_map_child'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.s_basement_grave_ceiling_child'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/deku']['location/deku_mq.s_2f_compass_side_child'] = ((byte & BIT4) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/dodongo'] && prevDungeonTypes['area/dodongo'].type == 'v';
     byte = mem.u8[BASE + 0xA6C2];
-    flags['area/dodongo']['location/dodongo.c_map'] = (byte & BIT1) ? true : false;
-    flags['area/dodongo']['location/dodongo.c_end_bridge'] = (byte & BIT3) ? true : false;
+    flags['area/dodongo']['location/dodongo.c_map'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.c_end_bridge'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6C3];
-    flags['area/dodongo']['location/dodongo.c_bomb_bag'] = (byte & BIT5) ? true : false;
-    flags['area/dodongo']['location/dodongo.c_compass'] = (byte & BIT6) ? true : false;
-    flags['area/dodongo']['location/dodongo.c_bomb_flower_platform'] = (byte & BIT7) ? true : false;
+    flags['area/dodongo']['location/dodongo.c_bomb_bag'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.c_compass'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.c_bomb_flower_platform'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6D3];
-    flags['area/dodongo']['location/dodongo.c_near_bomb_bag_salesman_1'] = (byte & BIT2) ? true : false;
-    flags['area/dodongo']['location/dodongo.c_east_corridor_salesman'] = (byte & BIT3) ? true : false;
-    flags['area/dodongo']['location/dodongo.c_near_bomb_bag_salesman_2'] = (byte & BIT5) ? true : false;
-    flags['area/dodongo']['location/dodongo.c_lobby_salesman'] = (byte & BIT6) ? true : false;
+    flags['area/dodongo']['location/dodongo.c_near_bomb_bag_salesman_1'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.c_east_corridor_salesman'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.c_near_bomb_bag_salesman_2'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.c_lobby_salesman'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA89F];
-    flags['area/dodongo']['location/dodongo.c_chest_above_dodongo'] = (byte & BIT1) ? true : false;
+    flags['area/dodongo']['location/dodongo.c_chest_above_dodongo'] = ((byte & BIT1) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46E];
-    flags['area/dodongo']['location/dodongo.s_big_staircase_vines'] = (byte & BIT1) ? true : false;
-    flags['area/dodongo']['location/dodongo.s_east_corridor_scarecrow_adult'] = (byte & BIT2) ? true : false;
-    flags['area/dodongo']['location/dodongo.s_above_big_staircase_adult'] = (byte & BIT3) ? true : false;
-    flags['area/dodongo']['location/dodongo.s_near_boss_bombable'] = (byte & BIT4) ? true : false;
-    flags['area/dodongo']['location/dodongo.s_east_corridor_bombable'] = (byte & BIT5) ? true : false;
-  }
-  else if (prevDungeonTypes['area/dodongo'] && prevDungeonTypes['area/dodongo'].type == 'mq') {
+    flags['area/dodongo']['location/dodongo.s_big_staircase_vines'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.s_east_corridor_scarecrow_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.s_above_big_staircase_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.s_near_boss_bombable'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo.s_east_corridor_bombable'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/dodongo'] && prevDungeonTypes['area/dodongo'].type == 'mq';
     byte = mem.u8[BASE + 0xA6C3];
-    flags['area/dodongo']['location/dodongo_mq.c_map'] = (byte & BIT1) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_under_grave'] = (byte & BIT2) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_gohma_larva_room'] = (byte & BIT3) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_torch_puzzle_room'] = (byte & BIT4) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_bomb_bag'] = (byte & BIT5) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_compass'] = (byte & BIT6) ? true : false;
+    flags['area/dodongo']['location/dodongo_mq.c_map'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_under_grave'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_gohma_larva_room'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_torch_puzzle_room'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_bomb_bag'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_compass'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6D2];
-    flags['area/dodongo']['location/dodongo_mq.c_1f_right'] = (byte & BIT1) ? true : false;
+    flags['area/dodongo']['location/dodongo_mq.c_1f_right'] = ((byte & BIT1) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6D3];
-    flags['area/dodongo']['location/dodongo_mq.c_main_room_salesman_1'] = (byte & BIT3) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_main_room_salesman_2'] = (byte & BIT5) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.c_above_stairs'] = (byte & BIT6) ? true : false;
+    flags['area/dodongo']['location/dodongo_mq.c_main_room_salesman_1'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_main_room_salesman_2'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.c_above_stairs'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA89F];
-    flags['area/dodongo']['location/dodongo_mq.c_chest_above_dodongo'] = (byte & BIT1) ? true : false;
+    flags['area/dodongo']['location/dodongo_mq.c_chest_above_dodongo'] = ((byte & BIT1) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46E];
-    flags['area/dodongo']['location/dodongo_mq.s_back_area'] = (byte & BIT1) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.s_scrub_poe_room'] = (byte & BIT2) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.s_upper_lizalfos_room'] = (byte & BIT3) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.s_time_block_room'] = (byte & BIT4) ? true : false;
-    flags['area/dodongo']['location/dodongo_mq.s_gohma_larva_skulltula'] = (byte & BIT5) ? true : false;
-  }
-  if (prevDungeonTypes['area/jabujabu'] && prevDungeonTypes['area/jabujabu'].type == 'v') {
+    flags['area/dodongo']['location/dodongo_mq.s_back_area'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.s_scrub_poe_room'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.s_upper_lizalfos_room'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.s_time_block_room'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/dodongo']['location/dodongo_mq.s_gohma_larva_skulltula'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/jabujabu'] && prevDungeonTypes['area/jabujabu'].type == 'v';
     byte = mem.u8[BASE + 0xA6DF];
-    flags['area/jabujabu']['location/jabujabu.c_boomerang'] = (byte & BIT2) ? true : false;
-    flags['area/jabujabu']['location/jabujabu.c_map'] = (byte & BIT3) ? true : false;
-    flags['area/jabujabu']['location/jabujabu.c_compass'] = (byte & BIT5) ? true : false;
+    flags['area/jabujabu']['location/jabujabu.c_boomerang'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu.c_map'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu.c_compass'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6EF];
-    flags['area/jabujabu']['location/jabujabu.c_elevator_dive_salesman'] = (byte & BIT2) ? true : false;
+    flags['area/jabujabu']['location/jabujabu.c_elevator_dive_salesman'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46D];
-    flags['area/jabujabu']['location/jabujabu.s_b1_ruto1_child'] = (byte & BIT1) ? true : false;
-    flags['area/jabujabu']['location/jabujabu.s_b1_ruto2_child'] = (byte & BIT2) ? true : false;
-    flags['area/jabujabu']['location/jabujabu.s_1f_near_boss_child'] = (byte & BIT3) ? true : false;
-    flags['area/jabujabu']['location/jabujabu.s_b1_rising_water_child'] = (byte & BIT4) ? true : false;
-  }
-  else if (prevDungeonTypes['area/jabujabu'] && prevDungeonTypes['area/jabujabu'].type == 'mq') {
+    flags['area/jabujabu']['location/jabujabu.s_b1_ruto1_child'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu.s_b1_ruto2_child'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu.s_1f_near_boss_child'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu.s_b1_rising_water_child'] = ((byte & BIT4) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/jabujabu'] && prevDungeonTypes['area/jabujabu'].type == 'mq';
     byte = mem.u8[BASE + 0xA6DE];
-    flags['area/jabujabu']['location/jabujabu_mq.c_basement_north_chest'] = (byte & BIT1) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_like_like_chest'] = (byte & BIT2) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_near_boss'] = (byte & BIT3) ? true : false;
+    flags['area/jabujabu']['location/jabujabu_mq.c_basement_north_chest'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_like_like_chest'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_near_boss'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6DF];
-    flags['area/jabujabu']['location/jabujabu_mq.c_compass'] = (byte & BIT1) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_boomerang_room_small_chest'] = (byte & BIT2) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_second_room_lower_chest'] = (byte & BIT3) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_map'] = (byte & BIT4) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_basement_south_chest'] = (byte & BIT5) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_entry_side_chest'] = (byte & BIT6) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_boomerang_chest'] = (byte & BIT7) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.c_second_room_upper'] = (byte & BIT8) ? true : false;
+    flags['area/jabujabu']['location/jabujabu_mq.c_compass'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_boomerang_room_small_chest'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_second_room_lower_chest'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_map'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_basement_south_chest'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_entry_side_chest'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_boomerang_chest'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.c_second_room_upper'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6E8];
-    flags['area/jabujabu']['location/jabujabu_mq.c_cow'] = (byte & BIT1) ? true : false;
+    flags['area/jabujabu']['location/jabujabu_mq.c_cow'] = ((byte & BIT1) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46D];
-    flags['area/jabujabu']['location/jabujabu_mq.s_boomerang_room'] = (byte & BIT1) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.s_near_boss_gs'] = (byte & BIT2) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.s_electric_worm_room'] = (byte & BIT3) ? true : false;
-    flags['area/jabujabu']['location/jabujabu_mq.s_invisible_enemies_room'] = (byte & BIT4) ? true : false;
-  }
-  if (prevDungeonTypes['area/temple_forest'] && prevDungeonTypes['area/temple_forest'].type == 'v') {
+    flags['area/jabujabu']['location/jabujabu_mq.s_boomerang_room'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.s_near_boss_gs'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.s_electric_worm_room'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/jabujabu']['location/jabujabu_mq.s_invisible_enemies_room'] = ((byte & BIT4) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_forest'] && prevDungeonTypes['area/temple_forest'].type == 'v';
     byte = mem.u8[BASE + 0xA6FA];
-    flags['area/temple_forest']['location/temple_forest.c_well'] = (byte & BIT2) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_near_boss'] = (byte & BIT4) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_bow'] = (byte & BIT5) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_poe_red'] = (byte & BIT6) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_boss_key'] = (byte & BIT7) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_poe_blue'] = (byte & BIT8) ? true : false;
+    flags['area/temple_forest']['location/temple_forest.c_well'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_near_boss'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_bow'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_poe_red'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_boss_key'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_poe_blue'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6FB];
-    flags['area/temple_forest']['location/temple_forest.c_behind_lobby'] = (byte & BIT1) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_map'] = (byte & BIT2) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_floormaster'] = (byte & BIT3) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_entrance'] = (byte & BIT4) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_block_push'] = (byte & BIT5) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_outside_hookshot'] = (byte & BIT6) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.c_falling_room'] = (byte & BIT8) ? true : false;
+    flags['area/temple_forest']['location/temple_forest.c_behind_lobby'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_map'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_floormaster'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_entrance'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_block_push'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_outside_hookshot'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.c_falling_room'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46C];
-    flags['area/temple_forest']['location/temple_forest.s_outside_hookshot_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.s_entrance_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.s_pillars_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.s_lobby_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_forest']['location/temple_forest.s_near_boss_adult'] = (byte & BIT5) ? true : false;
-  }
-  else if (prevDungeonTypes['area/temple_forest'] && prevDungeonTypes['area/temple_forest'].type == 'mq') {
+    flags['area/temple_forest']['location/temple_forest.s_outside_hookshot_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.s_entrance_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.s_pillars_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.s_lobby_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest.s_near_boss_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_forest'] && prevDungeonTypes['area/temple_forest'].type == 'mq';
     byte = mem.u8[BASE + 0xA6FA];
-    flags['area/temple_forest']['location/temple_forest_mq.c_well_chest'] = (byte & BIT2) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_near_boss'] = (byte & BIT4) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_bow'] = (byte & BIT5) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_map'] = (byte & BIT6) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_boss_key'] = (byte & BIT7) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_compass'] = (byte & BIT8) ? true : false;
+    flags['area/temple_forest']['location/temple_forest_mq.c_well_chest'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_near_boss'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_bow'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_map'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_boss_key'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_compass'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA6FB];
-    flags['area/temple_forest']['location/temple_forest_mq.c_behind_lobby'] = (byte & BIT1) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_ne_outdoors_lower'] = (byte & BIT2) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_redead_chest'] = (byte & BIT3) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_entrance'] = (byte & BIT4) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_ne_outdoors_upper'] = (byte & BIT6) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.c_falling_room'] = (byte & BIT7) ? true : false;
+    flags['area/temple_forest']['location/temple_forest_mq.c_behind_lobby'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_ne_outdoors_lower'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_redead_chest'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_entrance'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_ne_outdoors_upper'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.c_falling_room'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46C];
-    flags['area/temple_forest']['location/temple_forest_mq.s_outdoor_east_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.s_first_hallway_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.s_outdoor_west_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.s_well_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_forest']['location/temple_forest_mq.s_block_push_room_adult'] = (byte & BIT5) ? true : false;
-  }
-  if (prevDungeonTypes['area/temple_fire'] && prevDungeonTypes['area/temple_fire'].type == 'v') {
+    flags['area/temple_forest']['location/temple_forest_mq.s_outdoor_east_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.s_first_hallway_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.s_outdoor_west_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.s_well_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_forest']['location/temple_forest_mq.s_block_push_room_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_fire'] && prevDungeonTypes['area/temple_fire'].type == 'v';
     byte = mem.u8[BASE + 0xA716];
-    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_side'] = (byte & BIT1) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_highest_goron'] = (byte & BIT2) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_map'] = (byte & BIT3) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_bomb'] = (byte & BIT4) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_boss_key'] = (byte & BIT5) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_scarecrow'] = (byte & BIT6) ? true : false;
+    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_side'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_highest_goron'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_map'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_bomb'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_boss_key'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_scarecrow'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA717];
-    flags['area/temple_fire']['location/temple_fire.c_dancer'] = (byte & BIT1) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_near_boss'] = (byte & BIT2) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_big_lava_bomb'] = (byte & BIT3) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_lower'] = (byte & BIT4) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_big_lava_open'] = (byte & BIT5) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_hammer'] = (byte & BIT6) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_upper'] = (byte & BIT7) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.c_compass'] = (byte & BIT8) ? true : false;
+    flags['area/temple_fire']['location/temple_fire.c_dancer'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_near_boss'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_big_lava_bomb'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_lower'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_big_lava_open'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_hammer'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_boulder_maze_upper'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.c_compass'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB473];
-    flags['area/temple_fire']['location/temple_fire.s_big_lava_time_block_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.s_near_boss_key_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.s_boulder_maze_bombable_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.s_boulder_maze_scarecrow2_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_fire']['location/temple_fire.s_boulder_maze_scarecrow1_adult'] = (byte & BIT5) ? true : false;
-  }
-  else if (prevDungeonTypes['area/temple_fire'] && prevDungeonTypes['area/temple_fire'].type == 'mq') {
+    flags['area/temple_fire']['location/temple_fire.s_big_lava_time_block_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.s_near_boss_key_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.s_boulder_maze_bombable_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.s_boulder_maze_scarecrow2_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire.s_boulder_maze_scarecrow1_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_fire'] && prevDungeonTypes['area/temple_fire'].type == 'mq';
     byte = mem.u8[BASE + 0xA716];
-    flags['area/temple_fire']['location/temple_fire_mq.c_boulder_maze_side'] = (byte & BIT1) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_compass'] = (byte & BIT4) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_map'] = (byte & BIT5) ? true : false;
+    flags['area/temple_fire']['location/temple_fire_mq.c_boulder_maze_side'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_compass'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_map'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA717];
-    flags['area/temple_fire']['location/temple_fire_mq.c_megaton_hammer'] = (byte & BIT1) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_big_lava_bomb'] = (byte & BIT2) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_map_room_small_chest'] = (byte & BIT3) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_boulder_maze_lower'] = (byte & BIT4) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_boss_key'] = (byte & BIT5) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_west_tower_top'] = (byte & BIT6) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_boulder_maze_upper'] = (byte & BIT7) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.c_chest_near_boss'] = (byte & BIT8) ? true : false;
+    flags['area/temple_fire']['location/temple_fire_mq.c_megaton_hammer'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_big_lava_bomb'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_map_room_small_chest'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_boulder_maze_lower'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_boss_key'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_west_tower_top'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_boulder_maze_upper'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.c_chest_near_boss'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA720];
-    flags['area/temple_fire']['location/temple_fire_mq.c_freestanding_key'] = (byte & BIT5) ? true : false;
+    flags['area/temple_fire']['location/temple_fire_mq.c_freestanding_key'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB473];
-    flags['area/temple_fire']['location/temple_fire_mq.s_big_lava_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.s_above_fire_wall_maze_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.s_east_tower_top_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.s_fire_wall_maze_center_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_fire']['location/temple_fire_mq.s_fire_wall_maze_side_adult'] = (byte & BIT5) ? true : false;
-  }
-  if (prevDungeonTypes['area/ice_cavern'] && prevDungeonTypes['area/ice_cavern'].type == 'v') {
+    flags['area/temple_fire']['location/temple_fire_mq.s_big_lava_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.s_above_fire_wall_maze_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.s_east_tower_top_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.s_fire_wall_maze_center_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_fire']['location/temple_fire_mq.s_fire_wall_maze_side_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/ice_cavern'] && prevDungeonTypes['area/ice_cavern'].type == 'v';
     byte = mem.u8[BASE + 0xA7A3];
-    flags['area/ice_cavern']['location/ice_cavern.c_map'] = (byte & BIT1) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern.c_compass'] = (byte & BIT2) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern.c_boots'] = (byte & BIT3) ? true : false;
+    flags['area/ice_cavern']['location/ice_cavern.c_map'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern.c_compass'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern.c_boots'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7AF];
-    flags['area/ice_cavern']['location/ice_cavern.c_hp'] = (byte & BIT2) ? true : false;
+    flags['area/ice_cavern']['location/ice_cavern.c_hp'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB476];
-    flags['area/ice_cavern']['location/ice_cavern.s_block_puzzle_adult'] = (byte & BIT1) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern.s_ice_blades_adult'] = (byte & BIT2) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern.s_compass_room_adult'] = (byte & BIT3) ? true : false;
-  }
-  else if (prevDungeonTypes['area/ice_cavern'] && prevDungeonTypes['area/ice_cavern'].type == 'mq') {
+    flags['area/ice_cavern']['location/ice_cavern.s_block_puzzle_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern.s_ice_blades_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern.s_compass_room_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/ice_cavern'] && prevDungeonTypes['area/ice_cavern'].type == 'mq';
     byte = mem.u8[BASE + 0xA7A3];
-    flags['area/ice_cavern']['location/ice_cavern_mq.c_compass'] = (byte & BIT1) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern_mq.c_map'] = (byte & BIT2) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern_mq.c_boots'] = (byte & BIT3) ? true : false;
+    flags['area/ice_cavern']['location/ice_cavern_mq.c_compass'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern_mq.c_map'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern_mq.c_boots'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7AF];
-    flags['area/ice_cavern']['location/ice_cavern_mq.c_hp'] = (byte & BIT2) ? true : false;
+    flags['area/ice_cavern']['location/ice_cavern_mq.c_hp'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB476];
-    flags['area/ice_cavern']['location/ice_cavern_mq.s_scarecrow'] = (byte & BIT1) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern_mq.s_hp_room'] = (byte & BIT2) ? true : false;
-    flags['area/ice_cavern']['location/ice_cavern_mq.s_under_ice_block'] = (byte & BIT3) ? true : false;
-  }
-  if (prevDungeonTypes['area/temple_water'] && prevDungeonTypes['area/temple_water'].type == 'v') {
+    flags['area/ice_cavern']['location/ice_cavern_mq.s_scarecrow'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern_mq.s_hp_room'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/ice_cavern']['location/ice_cavern_mq.s_under_ice_block'] = ((byte & BIT3) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_water'] && prevDungeonTypes['area/temple_water'].type == 'v';
     byte = mem.u8[BASE + 0xA732];
-    flags['area/temple_water']['location/temple_water.c_central_bow'] = (byte & BIT1) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_compass'] = (byte & BIT2) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_chest_dragon'] = (byte & BIT3) ? true : false;
+    flags['area/temple_water']['location/temple_water.c_central_bow'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_compass'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_chest_dragon'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA733];
-    flags['area/temple_water']['location/temple_water.c_cracked_wall'] = (byte & BIT1) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_torches'] = (byte & BIT2) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_map'] = (byte & BIT3) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_river'] = (byte & BIT4) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_boss_key'] = (byte & BIT6) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_center_pillar'] = (byte & BIT7) ? true : false;
-    flags['area/temple_water']['location/temple_water.c_dark_link'] = (byte & BIT8) ? true : false;
+    flags['area/temple_water']['location/temple_water.c_cracked_wall'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_torches'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_map'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_river'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_boss_key'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_center_pillar'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.c_dark_link'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB472];
-    flags['area/temple_water']['location/temple_water.s_lowest_level_south_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_water']['location/temple_water.s_big_waterfall_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_water']['location/temple_water.s_center_pillar_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_water']['location/temple_water.s_near_boss_key_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_water']['location/temple_water.s_river_adult'] = (byte & BIT5) ? true : false;
-  }
-  else if (prevDungeonTypes['area/temple_water'] && prevDungeonTypes['area/temple_water'].type == 'mq') {
+    flags['area/temple_water']['location/temple_water.s_lowest_level_south_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.s_big_waterfall_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.s_center_pillar_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.s_near_boss_key_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water.s_river_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_water'] && prevDungeonTypes['area/temple_water'].type == 'mq';
     byte = mem.u8[BASE + 0xA733];
-    flags['area/temple_water']['location/temple_water_mq.c_longshot'] = (byte & BIT1) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.c_compass'] = (byte & BIT2) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.c_map'] = (byte & BIT3) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.c_boss_key'] = (byte & BIT6) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.c_central_pillar'] = (byte & BIT7) ? true : false;
+    flags['area/temple_water']['location/temple_water_mq.c_longshot'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.c_compass'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.c_map'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.c_boss_key'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.c_central_pillar'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA73F];
-    flags['area/temple_water']['location/temple_water_mq.c_freestanding_key'] = (byte & BIT2) ? true : false;
+    flags['area/temple_water']['location/temple_water_mq.c_freestanding_key'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB472];
-    flags['area/temple_water']['location/temple_water_mq.s_lizalfos_hallway_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.s_serpent_river_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.s_before_upper_water_switch'] = (byte & BIT3) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.s_north_basement_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_water']['location/temple_water_mq.s_south_basement_adult'] = (byte & BIT5) ? true : false;
-  }
-  if (prevDungeonTypes['area/temple_spirit'] && prevDungeonTypes['area/temple_spirit'].type == 'v') {
+    flags['area/temple_water']['location/temple_water_mq.s_lizalfos_hallway_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.s_serpent_river_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.s_before_upper_water_switch'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.s_north_basement_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_water']['location/temple_water_mq.s_south_basement_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_spirit'] && prevDungeonTypes['area/temple_spirit'].type == 'v';
     byte = mem.u8[BASE + 0xA74D];
-    flags['area/temple_spirit']['location/temple_spirit.c_topmost'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_hallway_right_invisible'] = (byte & BIT5) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_hallway_left_invisible'] = (byte & BIT6) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit.c_topmost'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_hallway_right_invisible'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_hallway_left_invisible'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA74E];
-    flags['area/temple_spirit']['location/temple_spirit.c_child_left'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_boss_key'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_child_climb_east'] = (byte & BIT5) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_first_mirror_left'] = (byte & BIT6) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_first_mirror_right'] = (byte & BIT7) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_main_room_NE'] = (byte & BIT8) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit.c_child_left'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_boss_key'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_child_climb_east'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_first_mirror_left'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_first_mirror_right'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_main_room_NE'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA74F];
-    flags['area/temple_spirit']['location/temple_spirit.c_child_right'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_sun_block'] = (byte & BIT2) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_statue_hand'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_map'] = (byte & BIT4) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_compass'] = (byte & BIT5) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_near_four_armos'] = (byte & BIT6) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_child_climb_north'] = (byte & BIT7) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.c_early_adult_right'] = (byte & BIT8) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit.c_child_right'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_sun_block'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_statue_hand'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_map'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_compass'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_near_four_armos'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_child_climb_north'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.c_early_adult_right'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB471];
-    flags['area/temple_spirit']['location/temple_spirit.s_childsegment_before_iron_knight'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.s_rolling_boulders_time_block_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.s_coloss_room_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.s_childsegment_sun_room'] = (byte & BIT4) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit.s_childsegment_left'] = (byte & BIT5) ? true : false;
-  }
-  else if (prevDungeonTypes['area/temple_spirit'] && prevDungeonTypes['area/temple_spirit'].type == 'mq') {
+    flags['area/temple_spirit']['location/temple_spirit.s_childsegment_before_iron_knight'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.s_rolling_boulders_time_block_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.s_coloss_room_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.s_childsegment_sun_room'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit.s_childsegment_left'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_spirit'] && prevDungeonTypes['area/temple_spirit'].type == 'mq';
     byte = mem.u8[BASE + 0xA74C];
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_dinolfos_ice'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_beamos_room'] = (byte & BIT2) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_front_left'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_front_right'] = (byte & BIT4) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_silver_block_hallway'] = (byte & BIT5) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_center'] = (byte & BIT6) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_back_left'] = (byte & BIT7) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_back_right'] = (byte & BIT8) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_dinolfos_ice'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_beamos_room'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_front_left'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_front_right'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_silver_block_hallway'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_center'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_back_left'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_entrance_back_right'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA74D];
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_mirror_puzzle_invisible'] = (byte & BIT3) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_mirror_puzzle_invisible'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA74E];
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_left'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_climb_south'] = (byte & BIT5) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_lower_ne_main_room'] = (byte & BIT8) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_left'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_climb_south'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_lower_ne_main_room'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA74F];
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_map'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_sun_block_room'] = (byte & BIT2) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_upper_ne_main_room'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_compass_chest'] = (byte & BIT4) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_lower_adult_left'] = (byte & BIT5) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_boss_key'] = (byte & BIT6) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_climb_north'] = (byte & BIT7) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.c_lower_adult_right'] = (byte & BIT8) ? true : false;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_map'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_sun_block_room'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_upper_ne_main_room'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_compass_chest'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_lower_adult_left'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_boss_key'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_child_climb_north'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.c_lower_adult_right'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB471];
-    flags['area/temple_spirit']['location/temple_spirit_mq.s_sun_block_room'] = (byte & BIT1) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.s_lower_adult_left'] = (byte & BIT2) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.s_iron_knuckles_west'] = (byte & BIT3) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.s_lower_adult_right'] = (byte & BIT4) ? true : false;
-    flags['area/temple_spirit']['location/temple_spirit_mq.s_iron_knuckles_north'] = (byte & BIT5) ? true : false;
-  }
-  if (prevDungeonTypes['area/well'] && prevDungeonTypes['area/well'].type == 'v') {
+    flags['area/temple_spirit']['location/temple_spirit_mq.s_sun_block_room'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.s_lower_adult_left'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.s_iron_knuckles_west'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.s_lower_adult_right'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_spirit']['location/temple_spirit_mq.s_iron_knuckles_north'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/well'] && prevDungeonTypes['area/well'].type == 'v';
     byte = mem.u8[BASE + 0xA785];
-    flags['area/well']['location/well.c_underwater_front'] = (byte & BIT1) ? true : false;
-    flags['area/well']['location/well.c_invisible'] = (byte & BIT5) ? true : false;
+    flags['area/well']['location/well.c_underwater_front'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_invisible'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA786];
-    flags['area/well']['location/well.c_front_left_hidden_wall'] = (byte & BIT1) ? true : false;
-    flags['area/well']['location/well.c_underwater_left'] = (byte & BIT2) ? true : false;
-    flags['area/well']['location/well.c_locked_pits'] = (byte & BIT3) ? true : false;
-    flags['area/well']['location/well.c_behind_right_grate'] = (byte & BIT5) ? true : false;
-    flags['area/well']['location/well.c_center_small'] = (byte & BIT7) ? true : false;
+    flags['area/well']['location/well.c_front_left_hidden_wall'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_underwater_left'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_locked_pits'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_behind_right_grate'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_center_small'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA787];
-    flags['area/well']['location/well.c__center_large'] = (byte & BIT2) ? true : false;
-    flags['area/well']['location/well.c_front_center_bombable'] = (byte & BIT3) ? true : false;
-    flags['area/well']['location/well.c_defeat_boss'] = (byte & BIT4) ? true : false;
-    flags['area/well']['location/well.c_back_left_bombable'] = (byte & BIT5) ? true : false;
-    flags['area/well']['location/well.c_right_bottom_hidden_wall'] = (byte & BIT6) ? true : false;
-    flags['area/well']['location/well.c_basement_ches'] = (byte & BIT8) ? true : false;
+    flags['area/well']['location/well.c__center_large'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_front_center_bombable'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_defeat_boss'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_back_left_bombable'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_right_bottom_hidden_wall'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/well']['location/well.c_basement_ches'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA793];
-    flags['area/well']['location/well.c_coffin_key'] = (byte & BIT2) ? true : false;
+    flags['area/well']['location/well.c_coffin_key'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB477];
-    flags['area/well']['location/well.s_locked_pits_child'] = (byte & BIT1) ? true : false;
-    flags['area/well']['location/well.s_east_inner_child'] = (byte & BIT2) ? true : false;
-    flags['area/well']['location/well.s_west_inner_child'] = (byte & BIT3) ? true : false;
-  }
-  else if (prevDungeonTypes['area/well'] && prevDungeonTypes['area/well'].type == 'mq') {
+    flags['area/well']['location/well.s_locked_pits_child'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/well']['location/well.s_east_inner_child'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/well']['location/well.s_west_inner_child'] = ((byte & BIT3) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/well'] && prevDungeonTypes['area/well'].type == 'mq';
     byte = mem.u8[BASE + 0xA787];
-    flags['area/well']['location/well_mq.c_lens_chest'] = (byte & BIT2) ? true : false;
-    flags['area/well']['location/well_mq.c_compass_chest'] = (byte & BIT3) ? true : false;
-    flags['area/well']['location/well_mq.c_map_chest'] = (byte & BIT4) ? true : false;
+    flags['area/well']['location/well_mq.c_lens_chest'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/well']['location/well_mq.c_compass_chest'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/well']['location/well_mq.c_map_chest'] = ((byte & BIT4) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA793];
-    flags['area/well']['location/well_mq.c_east_inner_freestanding_key'] = (byte & BIT2) ? true : false;
-    flags['area/well']['location/well_mq.c_deadhand_freestanding_key'] = (byte & BIT3) ? true : false;
+    flags['area/well']['location/well_mq.c_east_inner_freestanding_key'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/well']['location/well_mq.c_deadhand_freestanding_key'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB477];
-    flags['area/well']['location/well_mq.s_basement'] = (byte & BIT1) ? true : false;
-    flags['area/well']['location/well_mq.s_west_inner'] = (byte & BIT2) ? true : false;
-    flags['area/well']['location/well_mq.s_coffin_room'] = (byte & BIT3) ? true : false;
-  }
-  if (prevDungeonTypes['area/temple_shadow'] && prevDungeonTypes['area/temple_shadow'].type == 'v') {
+    flags['area/well']['location/well_mq.s_basement'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/well']['location/well_mq.s_west_inner'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/well']['location/well_mq.s_coffin_room'] = ((byte & BIT3) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_shadow'] && prevDungeonTypes['area/temple_shadow'].type == 'v';
     byte = mem.u8[BASE + 0xA769];
-    flags['area/temple_shadow']['location/temple_shadow.c_after_wind_hidden'] = (byte & BIT5) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_wind_hint'] = (byte & BIT6) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_invisible_blades_invisible'] = (byte & BIT7) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow.c_after_wind_hidden'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_wind_hint'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_invisible_blades_invisible'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA76A];
-    flags['area/temple_shadow']['location/temple_shadow.c_after_wind_enemy'] = (byte & BIT1) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_invisible_spikes'] = (byte & BIT2) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_spike_walls'] = (byte & BIT3) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_boss_key'] = (byte & BIT4) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_invisible_blades_visible'] = (byte & BIT5) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_hidden_floormaster'] = (byte & BIT6) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow.c_after_wind_enemy'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_invisible_spikes'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_spike_walls'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_boss_key'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_invisible_blades_visible'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_hidden_floormaster'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA76B];
-    flags['area/temple_shadow']['location/temple_shadow.c_map'] = (byte & BIT2) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_early_silver'] = (byte & BIT3) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_compass'] = (byte & BIT4) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_falling_spikes_switch'] = (byte & BIT5) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_falling_spikes_lower'] = (byte & BIT6) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_falling_spikes_upper'] = (byte & BIT7) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.c_boots'] = (byte & BIT8) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow.c_map'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_early_silver'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_compass'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_falling_spikes_switch'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_falling_spikes_lower'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_falling_spikes_upper'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.c_boots'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA777];
-    flags['area/temple_shadow']['location/temple_shadow.c_giant_pot'] = (byte & BIT2) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow.c_giant_pot'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB470];
-    flags['area/temple_shadow']['location/temple_shadow.s_behind_giant_pot_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.s_falling_spikes_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.s_behind_giant_pots_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.s_invisible_blade_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow.s_boat_adult'] = (byte & BIT5) ? true : false;
-  }
-  else if (prevDungeonTypes['area/temple_shadow'] && prevDungeonTypes['area/temple_shadow'].type == 'mq') {
+    flags['area/temple_shadow']['location/temple_shadow.s_behind_giant_pot_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.s_falling_spikes_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.s_behind_giant_pots_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.s_invisible_blade_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow.s_boat_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/temple_shadow'] && prevDungeonTypes['area/temple_shadow'].type == 'mq';
     byte = mem.u8[BASE + 0xA769];
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_stalfos_room'] = (byte & BIT1) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_after_wind_hidden'] = (byte & BIT5) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_wind_hint'] = (byte & BIT6) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_invisible_blades_invisible'] = (byte & BIT7) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_stalfos_room'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_after_wind_hidden'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_wind_hint'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_invisible_blades_invisible'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA76A];
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_after_wind_enemy'] = (byte & BIT1) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_invisible_spikes'] = (byte & BIT2) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_spike_walls_left'] = (byte & BIT3) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_boss_key'] = (byte & BIT4) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_invisible_blades_visible'] = (byte & BIT5) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_bomb_flower_chest'] = (byte & BIT6) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_near_ship_invisible'] = (byte & BIT7) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_beamos_silver'] = (byte & BIT8) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_after_wind_enemy'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_invisible_spikes'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_spike_walls_left'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_boss_key'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_invisible_blades_visible'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_bomb_flower_chest'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_near_ship_invisible'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_beamos_silver'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA76B];
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_compass'] = (byte & BIT2) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_map'] = (byte & BIT3) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_early_gibdos'] = (byte & BIT4) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_falling_spikes_switch'] = (byte & BIT5) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_falling_spikes_lower'] = (byte & BIT6) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_falling_spikes_upper'] = (byte & BIT7) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_boots'] = (byte & BIT8) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_compass'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_map'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_early_gibdos'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_falling_spikes_switch'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_falling_spikes_lower'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_falling_spikes_upper'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_boots'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA777];
-    flags['area/temple_shadow']['location/temple_shadow_mq.c_freestanding_key'] = (byte & BIT7) ? true : false;
+    flags['area/temple_shadow']['location/temple_shadow_mq.c_freestanding_key'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB470];
-    flags['area/temple_shadow']['location/temple_shadow_mq.s_wind_hint_adult'] = (byte & BIT1) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.s_crusher_room_adult'] = (byte & BIT2) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.s_near_boss_adult'] = (byte & BIT3) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.s_after_wind_adult'] = (byte & BIT4) ? true : false;
-    flags['area/temple_shadow']['location/temple_shadow_mq.s_after_ship_adult'] = (byte & BIT5) ? true : false;
-  }
-  if (prevDungeonTypes['area/training_grounds'] && prevDungeonTypes['area/training_grounds'].type == 'v') {
+    flags['area/temple_shadow']['location/temple_shadow_mq.s_wind_hint_adult'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.s_crusher_room_adult'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.s_near_boss_adult'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.s_after_wind_adult'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/temple_shadow']['location/temple_shadow_mq.s_after_ship_adult'] = ((byte & BIT5) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/training_grounds'] && prevDungeonTypes['area/training_grounds'].type == 'v';
     byte = mem.u8[BASE + 0xA7D9];
-    flags['area/training_grounds']['location/training_grounds.c_hammer_room_switch'] = (byte & BIT1) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_heavy_block_before'] = (byte & BIT2) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_hammer_room_clear'] = (byte & BIT3) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_lobby_left'] = (byte & BIT4) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_heavy_block_3'] = (byte & BIT5) ? true : false;
+    flags['area/training_grounds']['location/training_grounds.c_hammer_room_switch'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_heavy_block_before'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_hammer_room_clear'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_lobby_left'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_heavy_block_3'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7DA];
-    flags['area/training_grounds']['location/training_grounds.c_maze_right'] = (byte & BIT1) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_maze_3'] = (byte & BIT2) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_maze_2'] = (byte & BIT3) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_hidden_ceiling'] = (byte & BIT4) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_maze_final'] = (byte & BIT5) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_underwater_silver'] = (byte & BIT6) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_heavy_block_2'] = (byte & BIT7) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_heavy_block_1'] = (byte & BIT8) ? true : false;
+    flags['area/training_grounds']['location/training_grounds.c_maze_right'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_maze_3'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_maze_2'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_hidden_ceiling'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_maze_final'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_underwater_silver'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_heavy_block_2'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_heavy_block_1'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7DB];
-    flags['area/training_grounds']['location/training_grounds.c_stalfos'] = (byte & BIT1) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_beamos'] = (byte & BIT2) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_heavy_block_4'] = (byte & BIT3) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_eye_statue'] = (byte & BIT4) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_scarecrow'] = (byte & BIT5) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_maze_right_central'] = (byte & BIT6) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_maze_1'] = (byte & BIT7) ? true : false;
-    flags['area/training_grounds']['location/training_grounds.c_lobby_right'] = (byte & BIT8) ? true : false;
+    flags['area/training_grounds']['location/training_grounds.c_stalfos'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_beamos'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_heavy_block_4'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_eye_statue'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_scarecrow'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_maze_right_central'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_maze_1'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds.c_lobby_right'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7E7];
-    flags['area/training_grounds']['location/training_grounds.c_maze_right_key'] = (byte & BIT2) ? true : false;
-  }
-  else if (prevDungeonTypes['area/training_grounds'] && prevDungeonTypes['area/training_grounds'].type == 'mq') {
+    flags['area/training_grounds']['location/training_grounds.c_maze_right_key'] = ((byte & BIT2) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/training_grounds'] && prevDungeonTypes['area/training_grounds'].type == 'mq';
     byte = mem.u8[BASE + 0xA7D9];
-    flags['area/training_grounds']['location/training_grounds_mq.c_before_heavy_block'] = (byte & BIT2) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_second_iron_knuckle'] = (byte & BIT3) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_lobby_left'] = (byte & BIT4) ? true : false;
+    flags['area/training_grounds']['location/training_grounds_mq.c_before_heavy_block'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_second_iron_knuckle'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_lobby_left'] = ((byte & BIT4) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7DA];
-    flags['area/training_grounds']['location/training_grounds_mq.c_maze_right_side'] = (byte & BIT1) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_maze_3'] = (byte & BIT2) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_maze_2'] = (byte & BIT3) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_hidden_ceiling'] = (byte & BIT4) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_underwater'] = (byte & BIT6) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_flame_circle'] = (byte & BIT7) ? true : false;
+    flags['area/training_grounds']['location/training_grounds_mq.c_maze_right_side'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_maze_3'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_maze_2'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_hidden_ceiling'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_underwater'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_flame_circle'] = ((byte & BIT7) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA7DB];
-    flags['area/training_grounds']['location/training_grounds_mq.c_first_iron_knuckle'] = (byte & BIT1) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_dinolfos'] = (byte & BIT2) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_heavy_block'] = (byte & BIT3) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_eye_statue'] = (byte & BIT4) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_ice_arrows'] = (byte & BIT5) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_maze_right_central'] = (byte & BIT6) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_maze_1'] = (byte & BIT7) ? true : false;
-    flags['area/training_grounds']['location/training_grounds_mq.c_lobby_right'] = (byte & BIT8) ? true : false;
-  }
-  if (prevDungeonTypes['area/castle_ganon'] && prevDungeonTypes['area/castle_ganon'].type == 'v') {
+    flags['area/training_grounds']['location/training_grounds_mq.c_first_iron_knuckle'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_dinolfos'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_heavy_block'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_eye_statue'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_ice_arrows'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_maze_right_central'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_maze_1'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/training_grounds']['location/training_grounds_mq.c_lobby_right'] = ((byte & BIT8) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/castle_ganon'] && prevDungeonTypes['area/castle_ganon'].type == 'v';
     byte = mem.u8[BASE + 0xA7BE];
-    flags['area/castle_ganon']['location/castle_ganon.c_boss_key'] = (byte & BIT4) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon.c_boss_key'] = ((byte & BIT4) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA811];
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trail_invisible_enemies'] = (byte & BIT1) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_lullaby'] = (byte & BIT2) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_spirit_trial_first'] = (byte & BIT3) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_spirit_trial_second'] = (byte & BIT5) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trail_invisible_enemies'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_lullaby'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_spirit_trial_first'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_spirit_trial_second'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA812];
-    flags['area/castle_ganon']['location/castle_ganon.c_shadow_trial_first'] = (byte & BIT1) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_forest_trial'] = (byte & BIT2) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_second_right'] = (byte & BIT3) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_second_left'] = (byte & BIT4) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_first_left'] = (byte & BIT5) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_third_left'] = (byte & BIT6) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_first_right'] = (byte & BIT7) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_third_right'] = (byte & BIT8) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon.c_shadow_trial_first'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_forest_trial'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_second_right'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_second_left'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_first_left'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_third_left'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_first_right'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_light_trial_third_right'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA813];
-    flags['area/castle_ganon']['location/castle_ganon.c_shadow_trial_second'] = (byte & BIT6) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_water_trial_right'] = (byte & BIT7) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_water_trial_left'] = (byte & BIT8) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon.c_shadow_trial_second'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_water_trial_right'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_water_trial_left'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA822];
-    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_4'] = (byte & BIT1) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_1'] = (byte & BIT2) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_4'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_1'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA823];
-    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_3'] = (byte & BIT5) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_2'] = (byte & BIT7) ? true : false;
-  }
-  else if (prevDungeonTypes['area/castle_ganon'] && prevDungeonTypes['area/castle_ganon'].type == 'mq') {
+    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_3'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon.c_under_bridge_salesman_2'] = ((byte & BIT7) ? true : false) && dungeonType;
+  dungeonType = prevDungeonTypes['area/castle_ganon'] && prevDungeonTypes['area/castle_ganon'].type == 'mq';
     byte = mem.u8[BASE + 0xA7BE];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_boss_key'] = (byte & BIT4) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_boss_key'] = ((byte & BIT4) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA811];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_trial_second'] = (byte & BIT5) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_trial_second'] = ((byte & BIT5) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA812];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_sun_back_left'] = (byte & BIT1) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_sun_back_right'] = (byte & BIT2) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_trial_first'] = (byte & BIT3) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_sun_back_left'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_sun_back_right'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_trial_first'] = ((byte & BIT3) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA813];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_shadow_trial_first'] = (byte & BIT1) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_water_trial'] = (byte & BIT2) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_forest_trial_first'] = (byte & BIT3) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_forest_trial_second'] = (byte & BIT4) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_light_trial_lullaby'] = (byte & BIT5) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_shadow_trial_second'] = (byte & BIT6) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_golden'] = (byte & BIT7) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_sun_front_left'] = (byte & BIT8) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_shadow_trial_first'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_water_trial'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_forest_trial_first'] = ((byte & BIT3) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_forest_trial_second'] = ((byte & BIT4) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_light_trial_lullaby'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_shadow_trial_second'] = ((byte & BIT6) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_golden'] = ((byte & BIT7) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_spirit_sun_front_left'] = ((byte & BIT8) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA81F];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_forest_trial_key'] = (byte & BIT2) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_forest_trial_key'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA822];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_4'] = (byte & BIT1) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_1'] = (byte & BIT2) ? true : false;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_4'] = ((byte & BIT1) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_1'] = ((byte & BIT2) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xA823];
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_5'] = (byte & BIT2) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_3'] = (byte & BIT5) ? true : false;
-    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_2'] = (byte & BIT7) ? true : false;
-  }
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_5'] = ((byte & BIT2) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_3'] = ((byte & BIT5) ? true : false) && dungeonType;
+    flags['area/castle_ganon']['location/castle_ganon_mq.c_under_bridge_salesman_2'] = ((byte & BIT7) ? true : false) && dungeonType;
 
   for (var location in flags) {
     if (!prevFlags[location]) prevFlags[location] = {};
@@ -1987,8 +1964,6 @@ function checkShops() {
   }
 }
 
-// var Locations = {"area/kokiri":{"subexit/kokiri.links_house":{},"subexit/kokiri.midos_house":{},"subexit/kokiri.know_it_house":{},"subexit/kokiri.sarias_house":{},"subexit/kokiri.twins_house":{},"subexit/kokiri.shop":{},"subexit/kokiri.storm_grotto":{},"exit/kokiri_forest.kokiri_bridge_gateway":{},"exit/kokiri_forest.kokiri_woods_gateway":{}},"area/desert":{"exit/wasteland_near_fortress.wasteland_fortress_gateway":{},"exit/wasteland_near_colossus.wasteland_colossus_gateway":{}},"area/colossus":{"subexit/desert.fairy_fountain":{},"subexit/desert.strength_grotto":{},"exit/desert_colossus.wasteland_colossus_gateway":{}},"area/river":{"subexit/river.bomb_grotto":{},"subexit/river.open_grotto":{},"subexit/river.storms_grotto":{},"exit/zr_front.river_field_gateway":{},"exit/zora_river.river_woods_gateway":{},"exit/zr_behind_waterfall.river_domain_gateway":{}},"area/hyrule_field":{"subexit/hyrule_field.kakariko_grotto":{},"subexit/hyrule_field.lake_fence_grotto":{},"subexit/hyrule_field.lake_open_grotto":{},"subexit/hyrule_field.dive_grotto":{},"subexit/hyrule_field.valley_grotto":{},"subexit/hyrule_field.castle_entrance_grotto":{},"subexit/hyrule_field.fairy_grotto":{},"subexit/hyrule_field.little_forest_grotto":{},"exit/hyrule_field.field_woods_gateway":{},"exit/hyrule_field.lake_field_gateway":{},"exit/hyrule_field.marketentrance_field_gateway":{},"exit/hyrule_field.ranch_field_gateway":{},"exit/hyrule_field.kakariko_field_gateway":{},"exit/hyrule_field.river_field_gateway":{},"exit/hyrule_field.valley_field_gateway":{}},"area/gerudo_valley":{"subexit/gerudo_valley.tend":{},"subexit/gerudo_valley.octorock_grotto":{},"subexit/gerudo_valley.storms_grotto":{},"exit/gerudo_valley.valley_field_gateway":{},"exit/gv_fortress_side.valley_fortress_gateway":{}},"area/lake":{"subexit/lake.laboratory":{},"subexit/lake.fishing":{},"subexit/lake.grave_grotto":{},"exit/lake_hylia.lake_field_gateway":{},"exit/lake_hylia.domain_lake_gateway":{},"exit/lh.owl_flight":{}},"area/lonlon":{"subexit/lonlon.house":{},"subexit/lonlon.stables":{},"subexit/lonlon.silo":{},"subexit/lonlon.open_grotto":{},"exit/lon_lon_ranch.ranch_field_gateway":{}},"area/gerudo":{"subexit/gerudo.storms_grotto":{},"exit/gerudo_fortress.valley_fortress_gateway":{},"exit/gf_outside_gate.wasteland_fortress_gateway":{}},"area/woods":{"subexit/woods.near_goron_grotto":{},"subexit/woods.theatre_grotto":{},"subexit/woods.near_meadow_grotto":{},"exit/lw_bridge.field_woods_gateway":{},"exit/lw_bridge.kokiri_bridge_gateway":{},"exit/lost_woods.kokiri_woods_gateway":{},"exit/lost_woods.gc_woods_gateway":{},"exit/lost_woods.river_woods_gateway":{},"exit/lw_beyond_mido.meadow_woods_gateway":{}},"area/meadow":{"subexit/meadow.wolfos_grotto":{},"subexit/meadow.fairy_grotto":{},"subexit/meadow.storms_grotto":{},"exit/sfm_entryway.meadow_woods_gateway":{}},"area/town_entrance":{"subexit/castle_town.guard_tower":{},"exit/market_entrance.marketentrance_field_gateway":{},"exit/market_entrance.marketentrance_market_gateway":{}},"area/castle_town":{"subexit/castle_town.shop_bombchu":{},"subexit/castle_town.shop_bazaar":{},"subexit/castle_town.shop_magic":{},"subexit/castle_town.shop_mask":{},"subexit/castle_town.minigame_bombchu":{},"subexit/castle_town.minigame_shooting":{},"subexit/castle_town.minigame_treasure":{},"subexit/castle_town.back_house":{},"exit/market.marketentrance_market_gateway":{},"exit/market.grounds_market_gateway":{},"exit/market.tot_market_gateway":{}},"area/temple_time":{"subexit/castle_town.temple_of_time":{},"exit/tot_entrance.tot_market_gateway":{}},"area/castle":{"subexit/castle.fairy_young":{},"subexit/castle.storm_grotto":{},"exit/castle_grounds.grounds_market_gateway":{}},"area/castle_ganon_outside":{"subexit/castle.fairy_adult":{},"exit/castle_grounds.grounds_market_gateway":{}},"area/kakariko":{"subexit/kakariko.shop_bazaar":{},"subexit/kakariko.shop_magic":{},"subexit/kakariko.shop_magic_back":{},"subexit/kakariko.minigame_shooting":{},"subexit/kakariko.impas_house":{},"subexit/kakariko.impa_back":{},"subexit/kakariko.windmill":{},"subexit/kakariko.skulltula_house":{},"subexit/kakariko.kakariko_witch":{},"subexit/kakariko.carpenter_house":{},"subexit/kakariko.open_grotto":{},"subexit/kakariko.redead_grotto":{},"exit/kakariko_village.kakariko_field_gateway":{},"exit/kakariko_village.graveyard_kakariko_gateway":{},"exit/kak_behind_gate.mountain_kakariko_gateway":{}},"area/graveyard":{"subexit/graveyard.dampes_hut":{},"subexit/graveyard.dampes_grave":{},"subexit/graveyard.shield_grave":{},"subexit/graveyard.redead_grave":{},"subexit/graveyard.royal_grave":{},"exit/graveyard.graveyard_kakariko_gateway":{}},"area/mountain":{"subexit/mountain.fairy_fountain":{},"subexit/mountain.bomb_grotto":{},"subexit/mountain.storms_grotto":{},"exit/death_mountain.mountain_kakariko_gateway":{},"exit/death_mountain.mountain_goron_gateway":{},"exit/death_mountain_summit.crater_mountain_gateway":{},"exit/dmt.owl_flight":{}},"area/crater":{"subexit/crater.fairy_fountain":{},"subexit/crater.hammer_grotto":{},"subexit/crater.bomb_grotto":{},"exit/dmc_upper_local.crater_mountain_gateway":{},"exit/dmc_lower_local.crater_goron_gateway":{}},"area/goron":{"subexit/goron.shop":{},"subexit/goron.grotto":{},"exit/gc_darunias_chamber.crater_goron_gateway":{},"exit/goron_city.mountain_goron_gateway":{},"exit/gc_woods_warp.gc_woods_gateway":{}},"area/zoras":{"subexit/zoras.shop":{},"subexit/zoras.storms_grotto":{},"exit/zoras_domain.river_domain_gateway":{},"exit/zoras_domain.domain_lake_gateway":{},"exit/zd_behind_king_zora.fountain_domain_gateway":{}},"area/fountain":{"subexit/fountain.fairy_fountain":{},"exit/zoras_fountain.fountain_domain_gateway":{}},"area/deku":{},"area/dodongo":{},"area/jabujabu":{},"area/temple_forest":{},"area/temple_fire":{},"area/temple_water":{},"area/temple_shadow":{},"area/temple_spirit":{},"area/well":{},"area/ice_cavern":{},"area/training_grounds":{},"area/castle_ganon":{},"overworld":{"exit/child.spawn":{},"exit/adult.spawn":{},"exit/prelude":{},"exit/minuet":{},"exit/bolero":{},"exit/serenade":{},"exit/nocturne":{},"exit/requiem":{},"exit/deku":{},"exit/dodongo":{},"exit/jabujabu":{},"exit/temple_forest":{},"exit/temple_fire":{},"exit/temple_water":{},"exit/temple_shadow":{},"exit/temple_spirit":{},"exit/well":{},"exit/ice_cavern":{},"exit/training_grounds":{}}};
-
 var EntranceIndexToTrackerEntrance = {
   //kokiri
   0x0000: 'region.deku_tree_gateway -> region.deku_tree_entrance',
@@ -2440,6 +2415,43 @@ function checkLocations() {
   else if (scene == 0x0009) tmpLocation = 'area/ice_cavern';
   else if (scene == 0x000B) tmpLocation = 'area/training_grounds';
   else if (scene == 0x000D) tmpLocation = 'area/castle_ganon';
+  else if (scene == 0x0043) tmpLocation = 'area/temple_time';
+  else if (scene == 0x004F) {
+    var ganon = mem.u32[0x801CA11C];
+    if (
+         mem.u32[ganon + 0x144] == 0x06003B1C
+      && mem.u32[ganon + 0x14C] == 0x428E0000
+      && mem.u32[ganon + 0x150] == 0x42900000
+      && mem.u32[ganon + 0x154] == 0x428E0000
+    ) {
+      if (
+           prevDungeonTypes['area/castle_ganon']
+        && prevDungeonTypes['area/castle_ganon'].type == 'v'
+        && !prevFlags['area/castle_ganon']['location/castle_ganon.c_boss']
+      ) {
+        prevFlags['area/castle_ganon']['location/castle_ganon.c_boss'] = true;
+        for (var i = 0; i < clients.length; i++) {
+          clients[i].send('1 area/castle_ganon location/castle_ganon.c_boss true');
+        }
+        changed = true;
+      }
+      if (
+           prevDungeonTypes['area/castle_ganon']
+        && prevDungeonTypes['area/castle_ganon'].type == 'mq'
+        && !prevFlags['area/castle_ganon']['location/castle_ganon_mq.c_boss']
+      ) {
+        prevFlags['area/castle_ganon']['location/castle_ganon_mq.c_boss'] = true;
+        for (var i = 0; i < clients.length; i++) {
+          clients[i].send('1 area/castle_ganon location/castle_ganon_mq.c_boss true');
+        }
+        changed = true;
+      }
+    }
+  }
+  if (
+       mem.u8[0x801CA20C] > 0
+    || mem.u32[0x801C853C] < 20
+  ) return;
   if (tmpLocation && location != tmpLocation) {
     location = tmpLocation;
     if (prevDungeonTypes[location] && !prevDungeonTypes[location].visited) {
@@ -2829,14 +2841,6 @@ function checkLocations() {
     index += 2;
   }
   var actor = mem.u32[0x801CA10C];
-  // 801CA10C - grotto actor category
-  //    +0x00 u16 - actor id, needs to be grotto 0x009B
-  //    +0x08 u32 - pos.x
-  //    +0x0C u32 - pos.y
-  //    +0x10 u32 - pos.z
-  //    +0x19 u8  - grotto id
-  //    +0x1C u8  - grotto type, left number needs to be 2+
-  //    +0x124    - pointer to next actor
   while (actor) {
     if (mem.u16[actor] == 0x009B) {
       var id = mem.u32[actor + 0x08].hex()
@@ -2856,12 +2860,6 @@ function checkLocations() {
   }
 }
 
-// if (getCurrentMode() >= 3) {
-//   checkFlags();
-//   checkDungeons();
-//   checkItems();
-//   checkShops();
-// }
 setInterval(function() {
   currentMode = getCurrentMode();
   if (currentMode < 3) {
@@ -2939,9 +2937,4 @@ console.listen(function(input) {
     }
     else ws.decline();
   });
-  // console.listen(function(input) {
-  //   var tmp = '00000000'+parseInt(input, 16).toString(2);
-  //   console.log(tmp.substr(tmp.length-8));
-  //   console.log('87654321');
-  // });
 });

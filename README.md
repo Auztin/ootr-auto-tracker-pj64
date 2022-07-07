@@ -16,6 +16,7 @@ This was developed using v6.2 of the OoT Randomizer. Version changes might break
 - Shops (The item being sold, the price, who it's for and whether you've bought it)
 - ALL "checks" (anything that gives you a randomized item)
 - Randomized Entrances (dugeons/interiors/grottos/overworld/owl/song warps/spawn)
+- Stabbing Ganon in the face
 
 Basically, the only things it doesn't track are:
 - Triforce Pieces Count

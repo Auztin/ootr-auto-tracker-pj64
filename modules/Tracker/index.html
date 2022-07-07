@@ -48,15 +48,21 @@
   var settings = {};
   settings['auto_tracker_auto_switch'] = localStorage.getItem('auto_tracker_auto_switch') == 'true';
   settings['auto_tracker_clear_reload'] = localStorage.getItem('auto_tracker_clear_reload') == 'true';
+  settings['auto_tracker_group_init_commands'] = localStorage.getItem('auto_tracker_group_init_commands') == 'true';
   function processCommands(cmds) {
     for (var cmd in cmds) {
       var args = cmds[cmd];
+      if (args[0] == '-1') {
+        areas['area/castle_ganon']['location/castle_ganon.c_boss'].getState().value = 0;
+        areas['area/castle_ganon']['location/castle_ganon_mq.c_boss'].getState().value = 0
+      }
       if (args[0] == '-1' && settings['auto_tracker_clear_reload']) {
         var iframe;
         var shops;
         var dungeons;
         for (var location in areas) {
           for (var entry in areas[location]) {
+            if (entry.startsWith('location/')) continue;
             entry = areas[location][entry];
             if (entry.getState().item != 'item.refill_item') entry.getState().value = '';
           }
@@ -117,19 +123,6 @@
           if (args[3] == 'true') entry.getState().value = 1;
           else if (entry.getState().item != 'item.refill_item') entry.getState().value = 0;
         }
-        // var iframe;
-        // var locationlist;
-        // var location;
-        // if (
-        //      (iframe = document.querySelector('iframe'))
-        //   && (locationlist = iframe.contentDocument.querySelector('ootrt-locationlist'))
-        // ) {
-        //   locationlist.ref = args[1];
-        //   if (location = locationlist.shadowRoot.querySelector('[ref="'+args[2]+'"]')) {
-        //     if (args[3] == 'true') location.getState().value = 1;
-        //     else if (location.getState().item != 'item.refill_item') location.getState().value = 0;
-        //   }
-        // }
       }
       if (args[0] == '2') {
         var iframe;
@@ -187,18 +180,6 @@
         if (areas[args[1]] && areas[args[1]][args[2]]) {
           areas[args[1]][args[2]].getState().value = args.slice(3).join(' ');
         }
-        // var iframe;
-        // var locationlist;
-        // var location;
-        // if (
-        //      (iframe = document.querySelector('iframe'))
-        //   && (locationlist = iframe.contentDocument.querySelector('ootrt-locationlist'))
-        // ) {
-        //   locationlist.ref = args[1];
-        //   if (location = locationlist.shadowRoot.querySelector('[ref="'+args[2]+'"]')) {
-        //     location.getState().value = args.slice(3).join(' ');
-        //   }
-        // }
       }
       if (args[0] == '6' && settings['auto_tracker_auto_switch']) {
         var iframe;
@@ -220,8 +201,9 @@
       if (loaded) ws.send('0');
     });
     ws.addEventListener('message', function (event) {
+      console.log(event.data);
       var args = event.data.split(' ');
-      if (args[0] == '-1' || (cmdsBuffer.length && args[0] != '-2')) {
+      if (settings['auto_tracker_group_init_commands'] && args[0] == '-1' || (cmdsBuffer.length && args[0] != '-2')) {
         cmdsBuffer.push(args);
       }
       else if (args[0] == '-2') {
@@ -298,10 +280,6 @@
           }
           locationlist.ref = 'overworld';
         }
-        // var dungeons = document.querySelector('iframe').contentDocument.querySelector('ootrt-dungeonstate').shadowRoot.querySelectorAll('ootrt-dungeontype');
-        // for (var i = 0; i < dungeons.length; i++) {
-        //   dungeons[i].getState().type = 'v';
-        // }
         if (ws && ws.readyState == 1) ws.send('0');
       }
       else if (tracker) {
@@ -321,6 +299,7 @@
           if (!container.querySelector('.auto-tracker')) {
             addSetting(container, 'auto_tracker_auto_switch', 'Auto switch location');
             addSetting(container, 'auto_tracker_clear_reload', 'Clear tracker data on tracker/ROM load/reload');
+            addSetting(container, 'auto_tracker_group_init_commands', 'Group changes when receiving initial data from reload');
           }
         }
       }

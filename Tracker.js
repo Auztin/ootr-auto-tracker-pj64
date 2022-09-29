@@ -507,7 +507,7 @@ function checkFlags() {
     flags['area/deku']['location/deku_mq.c_basement'] = ((byte & BIT5) ? true : false) && dungeonType;
     flags['area/deku']['location/deku_mq.c_before_log'] = ((byte & BIT6) ? true : false) && dungeonType;
     flags['area/deku']['location/deku_mq.c_slingshot'] = ((byte & BIT7) ? true : false) && dungeonType;
-    byte = mem.u8[BASE + 0xA6A7];
+    byte = mem.u8[BASE + 0xA6B7];
     flags['area/deku']['location/deku_mq.c_basement_salesman'] = ((byte & BIT6) ? true : false) && dungeonType;
     byte = mem.u8[BASE + 0xB46F];
     flags['area/deku']['location/deku_mq.s_basement_back_room_child'] = ((byte & BIT1) ? true : false) && dungeonType;

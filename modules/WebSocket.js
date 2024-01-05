@@ -123,8 +123,8 @@ function wsNew(socket, wsKey, uri) {
             else if (opcode == 0x9) wsSendFrame(socket, 0xA, payload);
             else if (opcode == 0xA) console.log('pong');
             else {
-              for (var i = 0; i < recvFns.length; i++) {
-                recvFns[i](payload);
+              for (var n = 0; n < recvFns.length; n++) {
+                recvFns[n](payload);
               }
             }
             payload = '';

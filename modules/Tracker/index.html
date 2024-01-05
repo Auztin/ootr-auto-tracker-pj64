@@ -1,311 +1,54 @@
-<title>Austin's Auto Tracker for OoT</title>
-<style>
-  html, body {
-    margin: 0px;
-  }
-</style>
-<script type="text/javascript">
-  var ws;
-  var loaded = false;
-  var areas = {
-    "area/kokiri": {},
-    "area/desert": {},
-    "area/colossus": {},
-    "area/river": {},
-    "area/hyrule_field": {},
-    "area/gerudo_valley": {},
-    "area/lake": {},
-    "area/lonlon": {},
-    "area/gerudo": {},
-    "area/woods": {},
-    "area/meadow": {},
-    "area/town_entrance": {},
-    "area/castle_town": {},
-    "area/temple_time": {},
-    "area/castle": {},
-    "area/castle_ganon_outside": {},
-    "area/kakariko": {},
-    "area/graveyard": {},
-    "area/mountain": {},
-    "area/crater": {},
-    "area/goron": {},
-    "area/zoras": {},
-    "area/fountain": {},
-    "area/deku": {},
-    "area/dodongo": {},
-    "area/jabujabu": {},
-    "area/temple_forest": {},
-    "area/temple_fire": {},
-    "area/temple_water": {},
-    "area/temple_shadow": {},
-    "area/temple_spirit": {},
-    "area/well": {},
-    "area/ice_cavern": {},
-    "area/training_grounds": {},
-    "area/castle_ganon": {},
-    "overworld": {}
-  };
-  var settings = {};
-  settings['auto_tracker_auto_switch'] = localStorage.getItem('auto_tracker_auto_switch') == 'true';
-  settings['auto_tracker_clear_reload'] = localStorage.getItem('auto_tracker_clear_reload') == 'true';
-  settings['auto_tracker_group_init_commands'] = localStorage.getItem('auto_tracker_group_init_commands') == 'true';
-  function processCommands(cmds) {
-    for (var cmd in cmds) {
-      var args = cmds[cmd];
-      if (args[0] == '-1') {
-        areas['area/castle_ganon']['location/castle_ganon.c_boss'].getState().value = 0;
-        areas['area/castle_ganon']['location/castle_ganon_mq.c_boss'].getState().value = 0
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loading...</title>
+    <link rel="icon" type="image/x-icon" href="https://tootr.auztin.net/favicon.ico">
+    <style>
+      html, body {
+        margin: 0px;
+        height: 100%;
       }
-      if (args[0] == '-1' && settings['auto_tracker_clear_reload']) {
-        var iframe;
-        var shops;
-        var dungeons;
-        for (var location in areas) {
-          for (var entry in areas[location]) {
-            if (entry.startsWith('location/')) continue;
-            entry = areas[location][entry];
-            if (entry.getState().item != 'item.refill_item') entry.getState().value = '';
+      body {
+        display: flex;
+      }
+    </style>
+    <script type="text/javascript">
+      let ws;
+      window.addEventListener("message", (event) => {
+        if (event.data.msg == "ws open") {
+          if (ws) {
+            ws.onopen = undefined;
+            ws.onclose = undefined;
+            ws.onmessage = undefined;
+            ws.close();
+            delete ws;
+          }
+          ws = new WebSocket("ws://"+location.host+"/tracker");
+          ws.onopen = (wsEvent) => event.source.postMessage({msg:"ws open"}, "*");
+          ws.onclose = (wsEvent) => event.source.postMessage({msg:"ws close"}, "*");
+          // ws.onerror = (wsEvent) => event.source.postMessage({msg:"ws error"}, "*");
+          ws.onmessage = (wsEvent) => event.source.postMessage({msg:"ws message", data:wsEvent.data}, "*");
+        }
+        if (event.data.msg == "ws close") {
+          ws.onopen = undefined;
+          ws.onclose = undefined;
+          ws.onmessage = undefined;
+          ws.close();
+          delete ws;
+          ws = undefined;
+        }
+        if (event.data.msg == "ws message") {
+          try {
+            ws.send(event.data.data);
+          } catch (error) {
+            event.source.postMessage({msg:"ws error"});
           }
         }
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (shops = iframe.contentDocument.querySelector('ootrt-shoplist'))
-        ) {
-          shops = shops.shadowRoot.querySelectorAll('ootrt-shopfield');
-          for (var shop in shops) {
-            shop = shops[shop];
-            if (!shop.shadowRoot) continue;
-            var slots = shop.shadowRoot.querySelectorAll('ootrt-shopitem');
-            for (var slot in slots) {
-              slot = slots[slot];
-              if (!slot.getState) continue;
-              var oldBought = slot.getState().bought;
-              slot.getState().item = '';
-              slot.getState().price = 0;
-              var bought = false;
-              if (slot.getState().name != 'junk') {
-                slot.getState().bought = bought;
-                slot.getState().name = '';
-              }
-              else {
-                if (bought || oldBought) slot.getState().bought = true;
-              }
-            }
-          }
-        }
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (dungeons = iframe.contentDocument.querySelector('ootrt-dungeonstate'))
-        ) {
-          var types = dungeons.shadowRoot.querySelectorAll('ootrt-dungeontype');
-          for (var dungeon in types) {
-            dungeon = types[dungeon];
-            if (dungeon && dungeon.getState) dungeon.getState().type = 'n';
-          }
-        }
-      }
-      if (args[0] == '0') {
-        var iframe;
-        var itemgrid;
-        var item;
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (itemgrid = iframe.contentDocument.querySelector('ootrt-itemgrid'))
-        ) {
-          if (item = itemgrid.shadowRoot.querySelector('[ref="'+args[1]+'"]')) {
-            item.getState().value = parseInt(args[2]);
-          }
-        }
-      }
-      if (args[0] == '1') {
-        if (areas[args[1]] && areas[args[1]][args[2]]) {
-          var entry = areas[args[1]][args[2]];
-          if (args[3] == 'true') entry.getState().value = 1;
-          else if (entry.getState().item != 'item.refill_item') entry.getState().value = 0;
-        }
-      }
-      if (args[0] == '2') {
-        var iframe;
-        var dungeons;
-        var item;
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (dungeons = iframe.contentDocument.querySelector('ootrt-dungeonstate'))
-        ) {
-          if (item = dungeons.shadowRoot.querySelector('[ref="'+args[1]+'"]')) {
-            item.getState().value = parseInt(args[2]);
-          }
-        }
-      }
-      if (args[0] == '3') {
-        var iframe;
-        var shops;
-        var shop;
-        var slot;
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (shops = iframe.contentDocument.querySelector('ootrt-shoplist'))
-        ) {
-          if (shop = shops.shadowRoot.querySelector('[ref="'+args[1].split('/')[0]+'"]')) {
-            if (slot = shop.shadowRoot.querySelector('#slot'+args[1].split('/')[1])) {
-              var oldBought = slot.getState().bought;
-              slot.getState().item = args[2];
-              slot.getState().price = parseInt(args[3]);
-              var bought = (args[4] == 'true') ? true : false;
-              if (slot.getState().name != 'junk') {
-                slot.getState().bought = bought;
-                slot.getState().name = args.slice(5).join(' ');
-              }
-              else {
-                if (bought || oldBought) slot.getState().bought = true;
-              }
-            }
-          }
-        }
-      }
-      if (args[0] == '4') {
-        var iframe;
-        var dungeons;
-        var item;
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (dungeons = iframe.contentDocument.querySelector('ootrt-dungeonstate'))
-        ) {
-          if (item = dungeons.shadowRoot.querySelector('[ref="'+args[1]+'"][type="type"]')) {
-            item.getState().type = args[2];
-          }
-        }
-      }
-      if (args[0] == '5') {
-        if (areas[args[1]] && areas[args[1]][args[2]]) {
-          areas[args[1]][args[2]].getState().value = args.slice(3).join(' ');
-        }
-      }
-      if (args[0] == '6' && settings['auto_tracker_auto_switch']) {
-        var iframe;
-        var locationlist;
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (locationlist = iframe.contentDocument.querySelector('ootrt-locationlist'))
-        ) {
-          locationlist.ref = args[1];
-        }
-      }
-    }
-  }
-  var cmdsBuffer = [];
-  function initConnection() {
-    if (ws && ws.readyState < 3) return;
-    ws = new WebSocket('ws://'+location.host+'/tracker');
-    ws.addEventListener('open', function (event) {
-      if (loaded) ws.send('0');
-    });
-    ws.addEventListener('message', function (event) {
-      console.log(event.data);
-      var args = event.data.split(' ');
-      if (settings['auto_tracker_group_init_commands'] && args[0] == '-1' || (cmdsBuffer.length && args[0] != '-2')) {
-        cmdsBuffer.push(args);
-      }
-      else if (args[0] == '-2') {
-        processCommands(cmdsBuffer);
-        cmdsBuffer = [];
-      }
-      else processCommands([args]);
-    });
-  }
-  initConnection();
-  setInterval(initConnection, 5000);
-  function addSetting(container, key, label) {
-    var option = document.createElement('div');
-    option.classList.add('settings-option');
-    option.classList.add('auto-tracker');
-    container.appendChild(option);
-    option.innerHTML = `
-      <div class="option-container">
-        <label class="option-text" for="settings_settings_auto_tracker_`+key+`">`+label+`</label>
-        <div class="option-input">
-          <emc-input-wrapper>
-            <input id="settings_settings_auto_tracker_`+key+`" class="settings-input" type="checkbox" data-ref="auto_tracker_`+key+`">
-          </emc-input-wrapper>
-        </div>
-      </div>
-    `;
-    var input = option.querySelector('input');
-    input.checked = settings[key];
-    input.onchange = (e) => {
-      settings[key] = input.checked;
-      localStorage.setItem(key, input.checked);
-    };
-  }
-  function checkTracker() {
-    var tracker = document.querySelector('iframe').contentDocument;
-    var l = tracker.querySelector('#splash.inactive');
-    if (l == null) {
-      loaded = false;
-    }
-    else {
-      if (!loaded) {
-        loaded = true;
-        var iframe;
-        var locationlist;
-        var location;
-        var dungeons;
-        if (
-             (iframe = document.querySelector('iframe'))
-          && (locationlist = iframe.contentDocument.querySelector('ootrt-locationlist'))
-          && (dungeons = iframe.contentDocument.querySelector('ootrt-dungeonstate'))
-        ) {
-          for (var area in areas) {
-            locationlist.ref = area;
-            var dungeon;
-            var priorState;
-            if (dungeon = dungeons.shadowRoot.querySelector('[ref="'+area+'"][type="type"]')) {
-              priorState = dungeon.getState().type;
-              dungeon.getState().type = 'v';
-            }
-            var entries = locationlist.shadowRoot.querySelectorAll('ootrt-list-location, ootrt-list-subarea, ootrt-list-subexit, ootrt-list-exit');
-            for (var entry in entries) {
-              entry = entries[entry];
-              if (entry.ref) areas[area][entry.ref] = entry;
-            }
-            if (dungeon) {
-              dungeon.getState().type = 'mq';
-              var entries = locationlist.shadowRoot.querySelectorAll('ootrt-list-location, ootrt-list-subarea, ootrt-list-subexit, ootrt-list-exit');
-              for (var entry in entries) {
-                entry = entries[entry];
-                if (entry.ref) areas[area][entry.ref] = entry;
-              }
-              dungeon.getState().type = priorState;
-            }
-          }
-          locationlist.ref = 'overworld';
-        }
-        if (ws && ws.readyState == 1) ws.send('0');
-      }
-      else if (tracker) {
-        var emcPage;
-        var trackerSettings;
-        var settingWindow;
-        var generalSettings;
-        var container;
-        if (
-             (emcPage = tracker.querySelector('emc-page'))
-          && (trackerSettings = emcPage.shadowRoot.querySelector('tootr-window-trackersettings'))
-          && (settingWindow = trackerSettings.shadowRoot.querySelector('#categories'))
-          && (generalSettings = settingWindow.shadowRoot.querySelector('#body>#panel_settings>#settings_settings'))
-          && (container = generalSettings.shadowRoot.querySelector('#container'))
-        ) {
-
-          if (!container.querySelector('.auto-tracker')) {
-            addSetting(container, 'auto_tracker_auto_switch', 'Auto switch location');
-            addSetting(container, 'auto_tracker_clear_reload', 'Clear tracker data on tracker/ROM load/reload');
-            addSetting(container, 'auto_tracker_group_init_commands', 'Group changes when receiving initial data from reload');
-          }
-        }
-      }
-    }
-  }
-  setInterval(checkTracker, 1000);
-  var testing = null;
-</script>
-<iframe src="/index.html" style="border:0px;width:100vw;height:100vh"></iframe>
+        if (event.data.msg == "set title") document.title = event.data.data;
+      });
+    </script>
+  </head>
+  <body>
+    <iframe src="https://tootr.auztin.net/" style="border:0px;flex: 1 1 auto;"></iframe>
+  </body>
+</html>

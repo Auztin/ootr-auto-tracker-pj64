@@ -1,6 +1,6 @@
 # What is this?
-This is a Project64 script that runs a local version of [Track-OoT](https://track-oot.net/) ([Git](https://bitbucket.org/zidargs/track-oot/src/master/)) and automatically updates it based on what you have and have not done in the currently running game.
-This was developed using v6.2 of the OoT Randomizer. Version changes might break certain functionality.
+This is a Project64 script that allows communication with [A Tracker](https://tootr.auztin.net/) and automatically updates it based on what you have and have not done in the currently running game.
+This was developed using v8.1 of the OoT Randomizer. Version changes might break certain functionality.
 
 # What does it track?
 - All items and their upgrades
@@ -12,17 +12,16 @@ This was developed using v6.2 of the OoT Randomizer. Version changes might break
 - All stones/medallions
 - Small keys and Boss keys
 - Maps and Compasses
-- Whether a dungeon is Vanilla or Master Quest upon visiting it
+- Triforce Pieces Count
+- Randomized Ocarina Notes
+- Whether a dungeon is Vanilla or Master Quest upon visiting it or, if you have hints, when you receive the hint for it
 - Shops (The item being sold, the price, who it's for and whether you've bought it)
 - ALL "checks" (anything that gives you a randomized item)
 - Randomized Entrances (dugeons/interiors/grottos/overworld/owl/song warps/spawn)
 - Stabbing Ganon in the face
 
 Basically, the only things it doesn't track are:
-- Triforce Pieces Count
 - FOOL Count
-- Refill Item Count
-- Randomized Ocarina Notes
 - Gossip Stones
 
 # Support
@@ -65,8 +64,9 @@ Weregoose found addresses for:
 5. Open your prefered web browser (Firefox and Chrome were tested) and go to the address that the script gave you. For example, if you chose 8080 for the port, then you would navigate to http://127.0.0.1:8080/
    - Using 127.0.0.1 instead of localhost will perform better.
    - If you wish to use the tracker from another computer in your LAN, replace 127.0.0.1 with the LAN IP of the computer
-6. Configure the tracker based on the randomizer settings you chose and personal preference
-7. Launch the game
+6. Some browsers are agressive in their privacy settings and will delete all tracker data when you restart the browser. Make sure your browser has these settings turned off for the local URL you are using to avoid losing saved tracker progress.
+7. Configure the tracker based on the randomizer settings you chose (or import your spoiler log, or settings.sav from a local copy of the randomizer) and personal preference
+8. Launch the game
 
 Once you're in game, the script will automatically update the tracker based on the current game save.
 
@@ -74,7 +74,5 @@ Once you're in game, the script will automatically update the tracker based on t
 Most item givers (such as chests) won't get updated until you either save in game, or leave the current zone (includes voiding out).
 
 Some item givers (such as golden skulltulas or scrubs) update as soon as you close the relevant dialog.
-
-Small keys will update their count immediately upon getting a key. **HOWEVER**, locked doors won't be counted towards your key count until you save in game, or leave the current zone (includes voiding out).
 
 To ensure the tracker is fully synced up with the game, save the game.
